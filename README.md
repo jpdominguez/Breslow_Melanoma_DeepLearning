@@ -1,4 +1,4 @@
-# Breslow-Miv-Mis-AI
+# Melanoma Breslow thickness classification using ensemble-based knowledge distillation with semi-supervised deep convolutional neural networks
 
 
 Background: melanoma is considered a global public health challenge and is responsible for more than 90\% of deaths related to skin cancer. Although the diagnosis of early melanoma is the main goal of dermoscopy, the discrimination between dermoscopic images of in situ and invasive melanomas can be a difficult task even for experienced dermatologists. The recent advances in artificial intelligence in the field of medical image analysis show that its application to dermoscopy with the aim of supporting and providing a second opinion to the medical expert could be of great interest.
