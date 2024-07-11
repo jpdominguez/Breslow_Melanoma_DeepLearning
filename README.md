@@ -16,6 +16,35 @@ Conclusions: the obtained results show that semi-supervised learning could impro
 
 Data are available on request from the corresponding author. Images from Virgen del Rocío University Hospital (VRUH) Dataset are available upon request at <a href=https://institucional.us.es/breslowdataset>https://institucional.us.es/breslowdataset</a>.
 
+<h2>Code</h2>
+
+### 1. Supervised learning
+
+The folder (src/full_supervision) includes scripts to train and test CNNs in a supervised manner. In particular, the main scripts are:
+
+- src/full_supervision/train/train_supervised.py
+  * -n (--N_EXP): experiment number (used as an identifier: in case multiple versions of the same model are trained, different folders will be created identified with N_EXP).
+  * -b (--BATCH_SIZE): batch size to use.
+  * -e (--EPOCHS): number of epochs used to train the model.
+  * -m (--MODEL): CNN model to use. 4 options are available: densenet121, resnet50, vgg16 and inceptionv3.
+  * -l (--LEARNING_RATE): learning rate to use.
+  * -c (--NUM_CLASSES): number of diferent labels.
+  * -t (--TASK): task to perform. The options avaiable are: Breslow (Breslow < 0.8 mm vs Breslow >= 0.8  mm), InSitu (Miv vs Mis), or Multiclass (Mis vs Miv with BT < 0.8 mm vs Miv with BT >= 0.8 mm).
+
+- src/full_supervision/test/test_supervised.py
+  * -n (--N_EXP): experiment number (used as an identifier: in case multiple versions of the same model are trained, different folders will be created identified with N_EXP).
+  * -b (--BATCH_SIZE): batch size to use.
+  * -m (--MODEL): CNN model to use. 4 options are available: densenet121, resnet50, vgg16 and inceptionv3.
+  * -c (--NUM_CLASSES): number of diferent labels.
+  * -t (--TASK): task to perform. The options avaiable are: Breslow (Breslow < 0.8 mm vs Breslow >= 0.8  mm), InSitu (Miv vs Mis), or Multiclass (Mis vs Miv with BT < 0.8 mm vs Miv with BT >= 0.8 mm).
+  * -d (--DATASET): dataset to evaluate. The options available are: all (combined results for the whole test set), rocio (Breslow VRUH ddataset), Polesie (Polesie et al.), Argenciano (Kawahara et al.), ISIC (ISIC challenge dataset).
+
+- src/full_supervision/test/test_external_data.py
+  * -n (--N_EXP): experiment number (used as an identifier: in case multiple versions of the same model are trained, different folders will be created identified with N_EXP).
+  * -b (--BATCH_SIZE): batch size to use.
+  * -m (--MODEL): CNN model to use. 4 options are available: densenet121, resnet50, vgg16 and inceptionv3.
+  * -c (--NUM_CLASSES): number of diferent labels.
+  * -t (--TASK): task to perform. The options avaiable are: Breslow (Breslow < 0.8 mm vs Breslow >= 0.8  mm), InSitu (Miv vs Mis), or Multiclass (Mis vs Miv with BT < 0.8 mm vs Miv with BT >= 0.8 mm).
 
 <h2>Acknowledgements</h2>
 
