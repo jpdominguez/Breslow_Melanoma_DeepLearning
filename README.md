@@ -22,7 +22,7 @@ Data are available on request from the corresponding author. Images from Virgen 
 
 The folder (src/full_supervision) includes scripts to train and test CNNs in a supervised manner. In particular, the main scripts are:
 
-- src/full_supervision/train/train_supervised.py
+- src/full_supervision/train/train_supervised.py (supervised training using a 5-fold cross-validation approach)
   * -n (--N_EXP): experiment number (used as an identifier: in case multiple versions of the same model are trained, different folders will be created identified with N_EXP).
   * -b (--BATCH_SIZE): batch size to use.
   * -e (--EPOCHS): number of epochs used to train the model.
@@ -31,7 +31,7 @@ The folder (src/full_supervision) includes scripts to train and test CNNs in a s
   * -c (--NUM_CLASSES): number of diferent labels.
   * -t (--TASK): task to perform. The options avaiable are: Breslow (Breslow < 0.8 mm vs Breslow >= 0.8  mm), InSitu (Miv vs Mis), or Multiclass (Mis vs Miv with BT < 0.8 mm vs Miv with BT >= 0.8 mm).
 
-- src/full_supervision/test/test_supervised.py
+- src/full_supervision/test/test_supervised.py (evaluation of each of the models trained in the cross-validation approach)
   * -n (--N_EXP): experiment number (used as an identifier: in case multiple versions of the same model are trained, different folders will be created identified with N_EXP).
   * -b (--BATCH_SIZE): batch size to use.
   * -m (--MODEL): CNN model to use. 4 options are available: densenet121, resnet50, vgg16 and inceptionv3.
@@ -39,12 +39,38 @@ The folder (src/full_supervision) includes scripts to train and test CNNs in a s
   * -t (--TASK): task to perform. The options avaiable are: Breslow (Breslow < 0.8 mm vs Breslow >= 0.8  mm), InSitu (Miv vs Mis), or Multiclass (Mis vs Miv with BT < 0.8 mm vs Miv with BT >= 0.8 mm).
   * -d (--DATASET): dataset to evaluate. The options available are: all (combined results for the whole test set), rocio (Breslow VRUH ddataset), Polesie (Polesie et al.), Argenciano (Kawahara et al.), ISIC (ISIC challenge dataset).
 
-- src/full_supervision/test/test_external_data.py
+- src/full_supervision/test/test_external_data.py (test on an external dataset)
   * -n (--N_EXP): experiment number (used as an identifier: in case multiple versions of the same model are trained, different folders will be created identified with N_EXP).
   * -b (--BATCH_SIZE): batch size to use.
   * -m (--MODEL): CNN model to use. 4 options are available: densenet121, resnet50, vgg16 and inceptionv3.
   * -c (--NUM_CLASSES): number of diferent labels.
   * -t (--TASK): task to perform. The options avaiable are: Breslow (Breslow < 0.8 mm vs Breslow >= 0.8  mm), InSitu (Miv vs Mis), or Multiclass (Mis vs Miv with BT < 0.8 mm vs Miv with BT >= 0.8 mm).
+
+
+
+### 2. Knowledge distillation
+
+The following script includes the code to perform the pseudo-annotation of unlabeled images with the CNN models trainde in step 1:
+
+- src/semi_supervision/Annotator.py
+  * -n (--N_EXP): experiment number (used as an identifier: in case multiple versions of the same model are trained, different folders will be created identified with N_EXP).
+  * -b (--BATCH_SIZE): batch size to use.
+  * -m (--MODEL): CNN model to use. 4 options are available: densenet121, resnet50, vgg16 and inceptionv3.
+  * -f (--FOLD): fold to use (in case you don't want to use the majority voting with the 5 Teacher models but to a specific Teacher model to annotate). Options are: majority (uses the majority voting with the 5 Teacher models), 0, 1, 2, 3, or 4. 
+  * -t (--TASK): task to perform. The options avaiable are: Breslow (Breslow < 0.8 mm vs Breslow >= 0.8  mm), InSitu (Miv vs Mis), or Multiclass (Mis vs Miv with BT < 0.8 mm vs Miv with BT >= 0.8 mm).
+
+### 3. Semi-supervision
+
+The folder (src/semi_supervision) includes scripts to train and test CNNs following a semi-supervised approach. These scripts follow the same input arguments than those related to supervised learning. In particular, the main scripts are:
+
+- src/semi_supervision/train/train_student.py (semi-supervised training using a 5-fold cross-validation approach)
+- src/semi_supervision/train/test_semisupervised.py (evaluation of each of the semi-supervised models trained in the cross-validation approach)
+- src/semi_supervision/train/test_external_data.py (test on an external dataset)
+
+### 4. Summary of results
+
+There are other scripts in both src/full_supervision/test/ and src/semi_supervision/test/ for creating plots, summaries of the results in .csv and .xlsx and many other convenient reports, but are not critical and are only intended to summarize most of the results used in the publication.
+
 
 <h2>Acknowledgements</h2>
 
