@@ -1,4 +1,4 @@
-# Melanoma Breslow thickness classification using ensemble-based knowledge distillation with semi-supervised deep convolutional neural networks
+# Melanoma Breslow thickness classification using ensemble-based knowledge distillation with semi-supervised convolutional neural networks
 
 <h2>Abstract</h2>
 
